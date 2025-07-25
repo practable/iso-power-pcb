@@ -30,9 +30,8 @@
 
 
 
-void ISOpowerBegin(int32_t baudrate = 115200) {
-  Serial.begin(baudrate);
-  Serial.print("ISO Power Test Firmware");
+void ISOpowerBegin() {
+
 
   //Outputs
   pinMode(BUS_12V_DISABLE, OUTPUT);
@@ -101,16 +100,17 @@ void startListen() {
 
 
 void setup() {
-  ISOpowerBegin(115200);
+  Serial.begin(115200);
+  Serial.print("ISO Power Test Firmware");
+  ISOpowerBegin();
   changeChannelState(0, HIGH);
   changeChannelState(1, HIGH);
   changeChannelState(2, HIGH);
   changeChannelState(3, HIGH);
   changeChannelState(4, HIGH);
-  enable12vBus(false);
-  enable5vBus(false);
+  enable12vBus(true);
+  enable5vBus(true);
   flashLED();
-
 }
 
 
@@ -120,15 +120,14 @@ autoDelay txDelay;
 #define TX_PERIOD 1
 
 void loop() {
-//  currentSenseLoop();
- //startListen();
-  
- // if (rxVal != 0) {
- //   Serial.println(rxVal);
- // }
+  //  currentSenseLoop();
+  //startListen();
 
-///  if (txDelay.secondsDelay(TX_PERIOD)) {
- // sendByte(7);
- // }
+  // if (rxVal != 0) {
+  //   Serial.println(rxVal);
+  // }
 
+  ///  if (txDelay.secondsDelay(TX_PERIOD)) {
+  // sendByte(7);
+  // }
 }
